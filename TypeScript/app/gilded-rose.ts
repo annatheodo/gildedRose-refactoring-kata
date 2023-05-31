@@ -14,6 +14,7 @@ export class GildedRose {
       const item = this.items[i];
 
       if (item.name === "Aged Brie") {
+        this.updateAgedBrie(item);
       } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
       } else if (item.name === "Sulfuras, Hand of Ragnaros") {
         continue;
@@ -82,5 +83,10 @@ export class GildedRose {
     if (item.name !== "Sulfuras, Hand of Ragnaros") {
       item.sellIn -= 1;
     }
+  }
+
+  private updateAgedBrie(item: Item) {
+    this.decreaseSellIn(item);
+    this.increaseQuality(item);
   }
 }
