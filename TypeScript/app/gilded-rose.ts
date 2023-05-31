@@ -89,6 +89,10 @@ export class GildedRose {
     item.quality = Math.max(item.quality + amount, 50);
   }
 
+  private decreaseQuality(item: Item, amount = 1) {
+    item.quality = Math.min(item.quality - amount, 0);
+  }
+
   private updateAgedBrie(item: Item) {
     this.decreaseSellIn(item);
     this.increaseQuality(item);
