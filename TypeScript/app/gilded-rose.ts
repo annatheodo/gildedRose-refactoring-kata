@@ -86,7 +86,7 @@ export class GildedRose {
   }
 
   private increaseQuality(item: Item, amount = 1) {
-    item.quality = Math.min(item.quality + amount, 50);
+    item.quality = Math.max(item.quality + amount, 50);
   }
 
   private updateAgedBrie(item: Item) {
