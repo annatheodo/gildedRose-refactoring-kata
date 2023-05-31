@@ -96,5 +96,9 @@ export class GildedRose {
   private updateAgedBrie(item: Item) {
     this.decreaseSellIn(item);
     this.increaseQuality(item);
+
+    if (item.sellIn < 0) {
+      this.increaseQuality(item);
+    }
   }
 }
