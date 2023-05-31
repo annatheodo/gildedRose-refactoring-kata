@@ -1,11 +1,4 @@
-export class Item {
-  constructor(
-    public name: string,
-    public sellIn: number,
-    public quality: number
-  ) {}
-}
-
+import { Item } from "./item";
 export class GildedRose {
   constructor(public items: Item[] = []) {}
 
