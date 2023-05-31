@@ -16,6 +16,7 @@ export class GildedRose {
       if (item.name === "Aged Brie") {
         this.updateAgedBrie(item);
       } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
+        this.updateBackstagePasses(item);
       } else if (item.name === "Sulfuras, Hand of Ragnaros") {
         continue;
       } else {
@@ -98,6 +99,20 @@ export class GildedRose {
     this.increaseQuality(item);
 
     if (item.sellIn < 0) {
+      this.increaseQuality(item);
+    }
+  }
+
+  private updateBackstagePasses(item: Item) {
+    this.decreaseSellIn(item);
+
+    if (item.sellIn < 0) {
+      item.quality = 0;
+    } else if (item.sellIn <= 5) {
+      this.increaseQuality(item, 3);
+    } else if (item.sellIn <= 10) {
+      this.increaseQuality(item, 2);
+    } else {
       this.increaseQuality(item);
     }
   }
