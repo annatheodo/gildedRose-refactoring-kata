@@ -77,4 +77,10 @@ export class GildedRose {
 
     return this.items;
   }
+
+  private updateSellIn(item: Item) {
+    if (item.name !== "Sulfuras, Hand of Ragnaros") {
+      item.sellIn -= 1;
+    }
+  }
 }
