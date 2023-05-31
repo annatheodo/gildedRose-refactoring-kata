@@ -19,6 +19,8 @@ export class GildedRose {
         this.updateBackstagePasses(item);
       } else if (item.name === "Sulfuras, Hand of Ragnaros") {
         continue;
+      } else if (item.name === "Conjured") {
+        this.updateConjured(item);
       } else {
         this.updateNormalItem(item);
       }
@@ -116,6 +118,11 @@ export class GildedRose {
     } else {
       this.increaseQuality(item);
     }
+  }
+
+  private updateConjured(item: Item) {
+    this.decreaseSellIn(item);
+    this.decreaseQuality(item, 2);
   }
 
   private updateNormalItem(item: Item) {
