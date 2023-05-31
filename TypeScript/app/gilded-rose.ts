@@ -20,7 +20,7 @@ export class GildedRose {
       } else {
       }
 
-      this.updateSellIn(item);
+      this.decreaseSellIn(item);
 
       // if (
       //   this.items[i].name != "Aged Brie" &&
@@ -78,7 +78,7 @@ export class GildedRose {
     return this.items;
   }
 
-  private updateSellIn(item: Item) {
+  private decreaseSellIn(item: Item) {
     if (item.name !== "Sulfuras, Hand of Ragnaros") {
       item.sellIn -= 1;
     }
