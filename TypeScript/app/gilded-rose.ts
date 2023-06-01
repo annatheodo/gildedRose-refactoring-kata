@@ -1,4 +1,15 @@
 import { Item } from "./item";
+import {
+  BACKSTAGE_PASSES_QUALITY_INCREASE_1,
+  BACKSTAGE_PASSES_QUALITY_INCREASE_2,
+  BACKSTAGE_PASSES_QUALITY_ZERO,
+  BACKSTAGE_PASSES_SELLIN_THRESHOLD_1,
+  BACKSTAGE_PASSES_SELLIN_THRESHOLD_2,
+  CONJURED_QUALITY_DECREASE,
+  DEFAULT_QUALITY_AMOUNT,
+  MAX_QUALITY,
+  MIN_QUALITY,
+} from "./utils/constants";
 export class GildedRose {
   constructor(public items: Item[] = []) {}
 
@@ -30,12 +41,12 @@ export class GildedRose {
     }
   }
 
-  private increaseQuality(item: Item, amount = 1) {
-    item.quality = Math.max(item.quality + amount, 50);
+  private increaseQuality(item: Item, amount = DEFAULT_QUALITY_AMOUNT) {
+    item.quality = Math.max(item.quality + amount, MAX_QUALITY);
   }
 
-  private decreaseQuality(item: Item, amount = 1) {
-    item.quality = Math.min(item.quality - amount, 0);
+  private decreaseQuality(item: Item, amount = DEFAULT_QUALITY_AMOUNT) {
+    item.quality = Math.min(item.quality - amount, MIN_QUALITY);
   }
 
   private updateAgedBrie(item: Item) {
@@ -51,11 +62,11 @@ export class GildedRose {
     this.decreaseSellIn(item);
 
     if (item.sellIn < 0) {
-      item.quality = 0;
-    } else if (item.sellIn <= 5) {
-      this.increaseQuality(item, 3);
-    } else if (item.sellIn <= 10) {
-      this.increaseQuality(item, 2);
+      item.quality = BACKSTAGE_PASSES_QUALITY_ZERO;
+    } else if (item.sellIn <= BACKSTAGE_PASSES_SELLIN_THRESHOLD_1) {
+      this.increaseQuality(item, BACKSTAGE_PASSES_QUALITY_INCREASE_1);
+    } else if (item.sellIn <= BACKSTAGE_PASSES_SELLIN_THRESHOLD_2) {
+      this.increaseQuality(item, BACKSTAGE_PASSES_QUALITY_INCREASE_2);
     } else {
       this.increaseQuality(item);
     }
@@ -63,7 +74,7 @@ export class GildedRose {
 
   private updateConjured(item: Item) {
     this.decreaseSellIn(item);
-    this.decreaseQuality(item, 2);
+    this.decreaseQuality(item, CONJURED_QUALITY_DECREASE);
   }
 
   private updateNormalItem(item: Item) {
