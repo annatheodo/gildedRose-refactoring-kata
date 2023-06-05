@@ -18,15 +18,15 @@ export class GildedRose {
       const item = this.items[i];
 
       if (item.name === "Aged Brie") {
-        this.updateAgedBrie(item);
+        this.increaseQuality(item);
       } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
         this.updateBackstagePasses(item);
       } else if (item.name === "Sulfuras, Hand of Ragnaros") {
-        continue;
+        item.quality = 80;
       } else if (item.name === "Conjured") {
-        this.updateConjured(item);
+        this.decreaseQuality(item, DEFAULT_QUALITY_AMOUNT * 2);
       } else {
-        this.updateNormalItem(item);
+        this.decreaseQuality(item);
       }
 
       this.decreaseSellIn(item);
@@ -69,20 +69,6 @@ export class GildedRose {
       this.increaseQuality(item, BACKSTAGE_PASSES_QUALITY_INCREASE_2);
     } else {
       this.increaseQuality(item);
-    }
-  }
-
-  private updateConjured(item: Item) {
-    this.decreaseSellIn(item);
-    this.decreaseQuality(item, CONJURED_QUALITY_DECREASE);
-  }
-
-  private updateNormalItem(item: Item) {
-    this.decreaseSellIn(item);
-    this.decreaseQuality(item);
-
-    if (item.sellIn < 0) {
-      this.decreaseQuality(item);
     }
   }
 }
