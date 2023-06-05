@@ -41,20 +41,17 @@ export class GildedRose {
   }
 
   private increaseQuality(item: Item, amount = DEFAULT_QUALITY_AMOUNT) {
-    item.quality = Math.max(item.quality + amount, MAX_QUALITY);
+    item.quality = Math.max(
+      MIN_QUALITY,
+      Math.min(item.quality + amount, MAX_QUALITY)
+    );
   }
 
   private decreaseQuality(item: Item, amount = DEFAULT_QUALITY_AMOUNT) {
-    item.quality = Math.min(item.quality - amount, MIN_QUALITY);
-  }
-
-  private updateAgedBrie(item: Item) {
-    this.decreaseSellIn(item);
-    this.increaseQuality(item);
-
-    if (item.sellIn < 0) {
-      this.increaseQuality(item);
-    }
+    item.quality = Math.max(
+      MIN_QUALITY,
+      Math.min(item.quality - amount, MAX_QUALITY)
+    );
   }
 
   private updateBackstagePasses(item: Item) {
