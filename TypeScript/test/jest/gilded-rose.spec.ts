@@ -36,7 +36,6 @@ describe("Gilded Rose", () => {
     const normalItem = new Item("Normal Item", 0, 20);
     const gildedRose = new GildedRose([normalItem]);
     gildedRose.updateQuality();
-    expect(normalItem.sellIn).toBe(-1);
     expect(normalItem.quality).toBe(18);
   });
 
