@@ -55,8 +55,6 @@ export class GildedRose {
   }
 
   private updateBackstagePasses(item: Item) {
-    this.decreaseSellIn(item);
-
     if (item.sellIn < 0) {
       item.quality = BACKSTAGE_PASSES_QUALITY_ZERO;
     } else if (item.sellIn <= BACKSTAGE_PASSES_SELLIN_THRESHOLD_1) {
