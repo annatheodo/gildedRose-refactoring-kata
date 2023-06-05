@@ -28,16 +28,19 @@ export class GildedRose {
         this.decreaseQuality(item);
       }
 
-      this.decreaseSellIn(item);
+      if (item.name !== "Sulfuras, Hand of Ragnaros") {
+        this.decreaseSellIn(item);
+        if (item.sellIn < 0) {
+          this.decreaseQuality(item);
+        }
+      }
     }
 
     return this.items;
   }
 
   private decreaseSellIn(item: Item) {
-    if (item.name !== "Sulfuras, Hand of Ragnaros") {
-      item.sellIn -= 1;
-    }
+    item.sellIn -= 1;
   }
 
   private increaseQuality(item: Item, amount = DEFAULT_QUALITY_AMOUNT) {
