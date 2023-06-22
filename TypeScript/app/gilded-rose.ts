@@ -47,7 +47,7 @@ export class GildedRose {
   }
 
   private decreaseSellIn(item: Item) {
-    item.sellIn -= 1;
+    item.sellIn--;
   }
 
   private increaseQuality(item: Item, amount = DEFAULT_QUALITY_AMOUNT) {
