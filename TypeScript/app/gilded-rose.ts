@@ -13,7 +13,7 @@ import {
 export class GildedRose {
   constructor(public items: Item[] = []) {}
 
-  updateQuality() {
+  updateQuality(): Item[] {
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
 
@@ -46,25 +46,25 @@ export class GildedRose {
     return this.items;
   }
 
-  private decreaseSellIn(item: Item) {
+  private decreaseSellIn(item: Item): void {
     item.sellIn--;
   }
 
-  private increaseQuality(item: Item, amount = DEFAULT_QUALITY_AMOUNT) {
+  private increaseQuality(item: Item, amount = DEFAULT_QUALITY_AMOUNT): void {
     item.quality = Math.max(
       MIN_QUALITY,
       Math.min(item.quality + amount, MAX_QUALITY)
     );
   }
 
-  private decreaseQuality(item: Item, amount = DEFAULT_QUALITY_AMOUNT) {
+  private decreaseQuality(item: Item, amount = DEFAULT_QUALITY_AMOUNT): void {
     item.quality = Math.max(
       MIN_QUALITY,
       Math.min(item.quality - amount, MAX_QUALITY)
     );
   }
 
-  private updateBackstagePasses(item: Item) {
+  private updateBackstagePasses(item: Item): void {
     if (item.sellIn < 0) {
       item.quality = BACKSTAGE_PASSES_QUALITY_ZERO;
     } else if (item.sellIn <= BACKSTAGE_PASSES_SELLIN_THRESHOLD_1) {
