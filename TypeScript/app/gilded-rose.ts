@@ -17,22 +17,16 @@ export class GildedRose {
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
 
-      switch (true) {
-        case item.name === "Aged Brie":
-          this.increaseQuality(item);
-          break;
-        case item.name === "Backstage passes to a TAFKAL80ETC concert":
-          this.updateBackstagePasses(item);
-          break;
-        case item.name === "Sulfuras, Hand of Ragnaros":
-          item.quality = 80;
-          break;
-        case item.name.includes("Conjured"):
-          this.decreaseQuality(item, DEFAULT_QUALITY_AMOUNT * 2);
-          break;
-        default:
-          this.decreaseQuality(item);
-          break;
+      if (item.name === "Aged Brie") {
+        this.increaseQuality(item);
+      } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
+        this.updateBackstagePasses(item);
+      } else if (item.name === "Sulfuras, Hand of Ragnaros") {
+        item.quality = 80;
+      } else if (item.name.includes("Conjured")) {
+        this.decreaseQuality(item, DEFAULT_QUALITY_AMOUNT * 2);
+      } else {
+        this.decreaseQuality(item);
       }
 
       if (item.name !== "Sulfuras, Hand of Ragnaros") {
