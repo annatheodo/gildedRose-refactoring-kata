@@ -36,7 +36,7 @@ export class GildedRose {
         this.decreaseSellIn(item);
       }
 
-      if (item.sellIn < 0) {
+      if (item.sellIn < 0 && item.name !== ITEM_NAMES.AGED_BRIE) {
         this.decreaseQuality(item);
       }
     }
