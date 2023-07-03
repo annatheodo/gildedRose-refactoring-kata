@@ -34,9 +34,10 @@ export class GildedRose {
 
       if (item.name !== ITEM_NAMES.SULFURAS) {
         this.decreaseSellIn(item);
-        if (item.sellIn < 0) {
-          this.decreaseQuality(item);
-        }
+      }
+
+      if (item.sellIn < 0) {
+        this.decreaseQuality(item);
       }
     }
 
