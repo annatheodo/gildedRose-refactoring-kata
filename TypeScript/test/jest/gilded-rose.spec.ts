@@ -53,6 +53,13 @@ describe("Gilded Rose", () => {
     expect(agedBrie.quality).toBe(31);
   });
 
+  it("should increase quality of Aged Brie the older it gets, also for negative sellIn values", () => {
+    const agedBrie = new Item("Aged Brie", -1, 20);
+    const gildedRose = new GildedRose([agedBrie]);
+    gildedRose.updateQuality();
+    expect(agedBrie.quality).toBe(21);
+  });
+
   it("should drop quality of Backstage passes to 0 when sellIn is negative", () => {
     const backstagePasses = new Item(
       "Backstage passes to a TAFKAL80ETC concert",
